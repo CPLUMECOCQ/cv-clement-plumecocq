@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clément Plumecocq – Ingénieur en simulation numérique</title>
+  <meta name="description"
+    content="CV détaillé : expériences, formation, compétences et projets personnels (solveur d’Euler, instabilité de Rayleigh–Taylor).">
+  <style>
+    :root {
+      --bg: #f1f4f6;
+      --ink: #16213a;
+      --mute: #54607a;
+      --line: #cdd6e0;
+      --heavy: #16213a;
+      --accent: #0f7b86;
+      --card: #e7edf2;
+      --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root {
+        --bg: #0d1322;
+        --ink: #e5ebf3;
+        --mute: #97a3b8;
+        --line: #25304a;
+        --heavy: #8fb8d8;
+        --accent: #5cc3cd;
+        --card: #151d33;
+      }
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 17px/1.6 var(--sans)
+    }
+
+    a {
+      color: var(--accent)
+    }
+
+    a:focus-visible,
+    summary:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px
+    }
+
+    header {
+      padding: 56px 0 24px
+    }
+
+    h1 {
+      font: 600 clamp(2.2rem, 6.5vw, 3.9rem)/1.05 var(--serif);
+      margin: 0 0 12px;
+      letter-spacing: -.02em
+    }
+
+    .lead {
+      font-size: 1.15rem;
+      max-width: 34em;
+      margin: 0 0 18px
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 22px;
+      font-size: .95rem;
+      align-items: center
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--mute)
+    }
+
+    nav a:hover {
+      color: var(--accent)
+    }
+
+    nav button {
+      margin-left: auto;
+      font: inherit;
+      font-size: .9rem;
+      color: var(--ink);
+      background: none;
+      border: 1px solid var(--line);
+      padding: 3px 12px;
+      cursor: pointer
+    }
+
+    nav button:hover {
+      border-color: var(--accent)
+    }
+
+    .hero {
+      margin-top: 8px;
+      aspect-ratio: 21/9
+    }
+
+    .hero:has(img) {
+      display: block;
+      aspect-ratio: auto;
+      border: 0;
+      padding: 0;
+      background: none
+    }
+
+    .hero:has(img)::before {
+      content: none
+    }
+
+    .fig.hero img {
+      position: static;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block
+    }
+
+    section {
+      padding: 48px 0 4px
+    }
+
+    h2 {
+      font: 600 1.7rem/1.2 var(--serif);
+      margin: 0 0 20px
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      margin: 0;
+      line-height: 1.3
+    }
+
+    .meta {
+      color: var(--mute);
+      font-size: .9rem
+    }
+
+    /* logos et photos : l’initiale s’affiche si l’image est absente */
+    .logo {
+      flex: none;
+      position: relative;
+      width: 58px;
+      height: 58px;
+      background: #fff;
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      color: #8a96ab;
+      font: 600 .85rem var(--sans);
+      overflow: hidden
+    }
+
+    .logo::after {
+      content: attr(data-i)
+    }
+
+    .logo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 7px;
+      background: #fff;
+      z-index: 1
+    }
+
+    /* éléments dépliables */
+    .item {
+      border-bottom: 1px solid var(--line)
+    }
+
+    .item:first-of-type {
+      border-top: 1px solid var(--line)
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      padding: 20px 4px
+    }
+
+    summary::-webkit-details-marker {
+      display: none
+    }
+
+    summary::after {
+      content: "";
+      flex: none;
+      width: 9px;
+      height: 9px;
+      margin: 10px 4px 0 auto;
+      border-right: 2px solid var(--mute);
+      border-bottom: 2px solid var(--mute);
+      transform: rotate(45deg);
+      transition: transform .2s
+    }
+
+    details[open]>summary::after {
+      transform: rotate(-135deg)
+    }
+
+    summary:hover h3 {
+      color: var(--accent)
+    }
+
+    .head {
+      display: block
+    }
+
+    .head>span {
+      display: block
+    }
+
+    .org {
+      font-size: .95rem
+    }
+
+    .sum {
+      margin-top: 4px;
+      color: var(--mute);
+      font-size: .95rem
+    }
+
+    .body {
+      padding: 0 4px 24px 80px
+    }
+
+    .body ul {
+      margin: 0 0 12px;
+      padding-left: 20px
+    }
+
+    .body li {
+      margin-bottom: 6px
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 0 !important;
+      margin: 12px 0 0 !important;
+      list-style: none
+    }
+
+    .tags li {
+      border: 1px solid var(--line);
+      padding: 1px 10px;
+      font-size: .85rem;
+      color: var(--mute);
+      margin: 0
+    }
+
+    /* images de projet */
+    .fig {
+      position: relative;
+      margin: 14px 0;
+      aspect-ratio: 16/9;
+      background: var(--card);
+      border: 1px dashed var(--line);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 16px;
+      color: var(--mute);
+      font-size: .9rem
+    }
+
+    .fig::before {
+      content: attr(data-ph)
+    }
+
+    .fig img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1
+    }
+
+    /* figure large affichée en entier (pas de recadrage) */
+    .fig.wide {
+      aspect-ratio: auto;
+      display: block;
+      max-width: 480px;
+      margin: 14px auto
+    }
+
+    .fig.wide.rot {
+      --r: 2.4;
+      max-width: 260px;
+      aspect-ratio: 1 / var(--r)
+    }
+
+    .fig.wide.rot img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: calc(var(--r) * 100%);
+      height: auto;
+      transform: translate(-50%, -50%) rotate(90deg)
+    }
+
+    .fig.wide:has(img) {
+      padding: 0;
+      border: 0;
+      background: none
+    }
+
+    .fig.wide:has(img)::before {
+      content: none
+    }
+
+    .fig.wide img {
+      position: static;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: block
+    }
+
+    .gal {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .gal .fig {
+      margin: 0
+    }
+
+    .cap {
+      font-size: .85rem;
+      color: var(--mute);
+      margin: -6px 0 12px
+    }
+
+    .skills {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 12px 24px;
+      margin: 0
+    }
+
+    .skills dt {
+      font-weight: 600
+    }
+
+    .skills dd {
+      margin: 0
+    }
+
+    .skills .tags {
+      margin: 0 !important
+    }
+
+    .eq {
+      font-family: Georgia, serif;
+      font-style: italic;
+      background: var(--card);
+      padding: 10px 14px;
+      margin: 12px 0;
+      overflow-x: auto;
+      white-space: nowrap
+    }
+
+    .about {
+      max-width: 38em;
+      margin: 0
+    }
+
+    footer {
+      padding: 48px 0 64px
+    }
+
+    @media (max-width:640px) {
+      .body {
+        padding-left: 4px
+      }
+
+      .skills {
+        grid-template-columns: 1fr;
+        gap: 4px
+      }
+
+      .skills dd {
+        margin-bottom: 14px
+      }
+
+      .gal {
+        grid-template-columns: 1fr
+      }
+
+      nav button {
+        margin-left: 0
+      }
+    }
+
+    @media print {
+      nav button {
+        display: none
+      }
+
+      .item {
+        break-inside: avoid
+      }
+
+      /* à l’impression, les liens affichent leur adresse */
+      .body a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: .85em;
+        color: var(--mute)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="wrap">
+    <h1>Clément Plumecocq</h1>
+    <p class="lead">Ingénieur en simulation numérique et calcul scientifique.</p>
+    <nav aria-label="Sections">
+      <a href="#apropos">À propos</a>
+      <a href="#experience">Expérience</a>
+      <a href="#formation">Formation</a>
+      <a href="#competences">Compétences</a>
+      <a href="#projets">Projets</a>
+      <a href="#contact">Contact</a>
+      <button type="button" id="toggle">Tout replier</button>
+    </nav>
+  </header>
+
+  <!-- <div class="wrap">
+  <figure class="fig hero" data-ph="Votre GIF ici : déposez-le dans img/hero.gif (par exemple une instabilité de Kelvin–Helmholtz)">
+    <img src="img/hero.gif" alt="Simulation d’une instabilité de Kelvin–Helmholtz" onerror="this.remove()">
+  </figure>
+</div> -->
+
+  <main class="wrap">
+    <section id="apropos">
+      <h2>À propos</h2>
+      <p class="about">Ingénieur en simulation numérique, soutenance de thèse le 16 décembre 2026. Disponible
+        immédiatement et mobile géographiquement. Mes travaux de thèse portent sur la modélisation et la simulation de
+        problèmes couplés, avec une composante importante sur la prise en compte de données thermodynamiques complexes :
+        gain d'un facteur 100 sur le temps de calcul pour une erreur relative de 10⁻⁵, obtenu en comparant différents
+        métamodèles (interpolation sur grille adaptative en dimension arbitraire (> à 3), compression tensorielle,
+        réseaux de
+        neurones).</p>
+    </section>
+
+    <section id="experience">
+      <h2>Expérience</h2>
+
+      <details class="item" open>
+        <summary>
+          <span class="logo" data-i="CEA"><img src="img/logos/LOGO_CEA.png" alt="" onerror="this.remove()"></span>
+          <span class="head">
+            <h3>Thèse de doctorat</h3>
+            <span class="org">Commissariat à l’énergie atomique et aux énergies alternatives (CEA) · Cadarache</span>
+            <span class="meta">Oct. 2023 – oct. 2026 · soutenance le 16 déc. 2026</span>
+            <span class="sum">Sujet : «&nbsp;Simulation de la diffusion anisotherme diphasique dans des oxydes non
+              stœchiométriques : modélisation par une méthode de champ de phase et fermetures thermodynamiques
+              CALPHAD&nbsp;»</span>
+          </span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Simulation du couplage entre transfert thermique, diffusion d’espèces multicomposant et changement de
+              phase solide-liquide</li>
+            <li>Développement et analyse d’un modèle de champ de phase</li>
+            <li>Développement de modèles de substitution pour intégrer les données thermodynamiques dans les
+              simulations : compression et complétion tensorielles, tabulation et interpolation sur grilles adaptatives
+              en dimension arbitraire, réseaux de neurones</li>
+            <li>Optimisation des temps de calcul : gain d’un facteur supérieur à 100 sur le temps lié à la
+              thermodynamique et supérieur à 10 sur le temps de calcul total</li>
+          </ul>
+          <ul class="tags">
+            <li>C++</li>
+            <li>Python</li>
+            <li>Champ de phase</li>
+            <li>Transferts thermiques</li>
+            <li>Thermochimie (CALPHAD)</li>
+            <li>Grille adaptative (hyper-octree et kd-tree)</li>
+            <li>Compression tensorielle (Tensor-Train et CP)</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="item" open>
+        <summary>
+          <span class="logo" data-i="CEA"><img src="img/logos/LOGO_CEA.png" alt="" onerror="this.remove()"></span>
+          <span class="head">
+            <h3>Stage de fin d’études</h3>
+            <span class="org">Commissariat à l’énergie atomique et aux énergies alternatives (CEA) · Cadarache</span>
+            <span class="meta">Févr. – août 2023</span>
+            <span class="sum">Simulation CFD diphasique d’une goutte soumise à du transfert de masse
+              multicomposant</span>
+          </span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li> Modélisation CFD diphasique par méthode de champ de phase multicomposant et étude de sensibilité aux
+              paysages thermodynamiques</li>
+            <li>Reproduction qualitative du diagramme de Clift (régimes de déformation d’une goutte)</li>
+            <li>Simulations d’instabilités de Rayleigh–Taylor induites par transfert de masse
+              interfacial</li>
+            <li>Valorisation des résultats : intégration d'une partie des travaux dans le manuscrit de thèse de M.A.
+              Rasolofomanana :
+              <a href="https://theses.fr/2023IPPAX141" target="_blank" rel="noopener">theses.fr/2023IPPAX141</a>
+            </li>
+          </ul>
+          <div class="fig wide rot" data-ph="Image : figure de votre stage (champ de densité, courbe de convergence…)">
+            <img src="img/clift.png" alt="Figure issue du stage" onerror="this.remove()">
+          </div>
+          <ul class="tags">
+            <li>CFD</li>
+            <li>Python</li>
+            <li>Champ de phase</li>
+            <li>Diffusion d’espèces</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="item" open>
+        <summary>
+          <span class="logo" data-i="IUSTI"><img src="img/logos/IUSTI.png" alt="" onerror="this.remove()"></span>
+          <span class="head">
+            <h3>Stage de master 1</h3>
+            <span class="org">Institut Universitaire des Systèmes Thermiques Industriels (IUSTI) UMR 7343 ·
+              Marseille</span>
+            <span class="meta">Juin – août 2022</span>
+            <span class="sum">Stage en laboratoire universitaire</span>
+          </span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Implémentation et amélioration d’un modèle de thermorégulation 1D instationnaire issu de la
+              littérature, sous Octave/MATLAB</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <section id="formation">
+      <h2>Formation</h2>
+
+      <details class="item" open>
+        <summary>
+          <span class="logo" data-i="Polytech"><img src="img/logos/Polytech.svg" alt="" onerror="this.remove()"></span>
+          <span class="head">
+            <h3>Diplôme d’ingénieur — Mécanique Énergétique</h3>
+            <span class="org">Polytech Marseille</span>
+            <span class="meta">2020 – 2023</span>
+            <span class="sum">Parcours simulation avancée en mécanique des fluides et thermique</span>
+          </span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Mécanique des fluides (théorique et numérique) : fluides visqueux et parfaits, turbulence</li>
+            <li>Transferts thermiques : conduction, convection et rayonnement</li>
+            <li>Programmation scientifique et simulation : méthodes numériques, MATLAB, Fortran 90, C++</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="item" open>
+        <summary>
+          <span class="logo" data-i="LiU"><img src="img/logos/liu.png" alt="" onerror="this.remove()"></span>
+          <span class="head">
+            <h3>Échange Erasmus</h3>
+            <span class="org">Linköping University (LiU) · Linköping (Suède)</span>
+            <span class="meta">2022 – 2023</span>
+          </span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Échange non diplômant d’un semestre, cours dispensés en anglais</li>
+            <li>Cours : aérodynamique, turbines à gaz (turbomachines, thermodynamique, mécanique des fluides),
+              mécanique du vol, mécanique des milieux continus</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="item" open>
+        <summary>
+          <span class="logo" data-i="CPGE"><img src="img/logos/bourdelle.jpeg" alt="" onerror="this.remove()"></span>
+          <span class="head">
+            <h3>Classe préparatoire aux grandes écoles (CPGE) — Physique et Technologie (PTSI/PT)</h3>
+            <span class="org">Lycée Antoine Bourdelle · Montauban</span>
+            <span class="meta">2018 – 2020</span>
+          </span>
+        </summary>
+        <div class="body">
+          <ul>
+            <li>Enseignement général en mathématiques, physique-chimie et sciences industrielles de l’ingénieur (SII)
+            </li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <section id="competences">
+      <h2>Compétences</h2>
+      <dl class="skills">
+        <dt>Simulation numérique</dt>
+        <dd>
+          <ul class="tags">
+            <li>Transferts de masse et de chaleur</li>
+            <li>Mécanique des fluides (théorique et numérique CFD)</li>
+            <li>Champ de phase</li>
+            <li>Thermodynamique CALPHAD</li>
+            <li>Volumes finis</li>
+            <li>Éléments finis</li>
+          </ul>
+        </dd>
+        <dt>Modèles de substitution</dt>
+        <dd>
+          <ul class="tags">
+            <li>Compression tensorielle (Tensor Train, PARAFAC)</li>
+            <li>Réseaux de neurones</li>
+            <li>Interpolation sur grilles adaptatives (hyper-octree, kd-tree)</li>
+          </ul>
+        </dd>
+        <dt>Programmation</dt>
+        <dd>
+          <ul class="tags">
+            <li>Python</li>
+            <li>C++</li>
+            <li>MATLAB</li>
+            <li>Git / GitHub</li>
+          </ul>
+        </dd>
+        <dt>Outils</dt>
+        <dd>
+          <ul class="tags">
+            <li>Visualtion (ParaView, Matplotlib)</li>
+            <li>PyTorch</li>
+            <li>TensorLy</li>
+            <li>Environnement Linux</li>
+            <li>LaTeX</li>
+          </ul>
+        </dd>
+        <dt>Langues</dt>
+        <dd>Français (natif) · anglais (professionnel)</dd>
+      </dl>
+    </section>
+
+    <section id="projets">
+      <h2>Projets personnels</h2>
+
+      <details class="item" open>
+        <summary>
+          <!-- <span class="logo" data-i="∂t"><img src="img/projets/euler-icone.png" alt="" onerror="this.remove()"></span> -->
+          <span class="head">
+            <h3>Solveur des équations d’Euler compressibles</h3>
+            <span class="meta">C++ · volumes finis · 2D</span>
+            <span class="sum">Code écrit avec le framework AMReX</span>
+          </span>
+        </summary>
+        <div class="body">
+          <!-- <div class="eq">∂ρ/∂t + ∇·(ρu) = 0 &nbsp;·&nbsp; ∂(ρu)/∂t + ∇·(ρu⊗u + pI) = 0 &nbsp;·&nbsp; ∂E/∂t + ∇·((E + p)u) = 0</div> -->
+          <ul>
+            <li>Utilisation de la bibliothèque AMReX pour la gestion du parallélisme (sans raffinement adaptatif)</li>
+            <li>Schéma numérique : MUSCL avec limiteur de pente, flux HLLC, RK3-SSP</li>
+            <li>Validation sur une solution de référence (tube à choc de Sod 1D)</li>
+            <li>Simulation d’une instabilité de Rayleigh–Taylor</li>
+          </ul>
+          <div class="gal">
+            <!-- <div class="fig" data-ph="Image : tube à choc de Sod, numérique contre exact"><img src="img/projets/animation.gif" alt="Tube à choc de Sod : solution numérique et solution exacte" onerror="this.remove()"></div> -->
+            <div class="fig" data-ph="Image : problème de Riemann 2D, champ de densité"><img
+                src="img/projets/animation.gif" alt="Problème de Riemann 2D, champ de densité" onerror="this.remove()">
+            </div>
+          </div>
+          <ul class="tags">
+            <li>C++</li>
+            <li>AMReX</li>
+            <li>Équations d’Euler</li>
+            <li>Volumes finis</li>
+            <li>CFD</li>
+          </ul>
+          <!-- <p><a href="https://github.com/VOTRE-PSEUDO/euler-solver">Code source sur GitHub</a></p> -->
+        </div>
+      </details>
+
+    </section>
+  </main>
+
+  <footer class="wrap" id="contact">
+    <h2>Contact</h2>
+    <!-- <a href="https://github.com/VOTRE-PSEUDO">GitHub</a> · -->
+    <!-- <p><a href="mailto:bla.cbla@gmail.fr">prenom.nom@exemple.fr</a> · -->
+    <a href="https://www.linkedin.com/in/cl%C3%A9ment-plumecocq-69428620b/">LinkedIn</a></a>
+    </p>
+  </footer>
+
+  <script>
+    (function () {
+      // Tout déplier / tout replier (la page s’ouvre avec tout déplié)
+      var btn = document.getElementById('toggle'), all = function () { return document.querySelectorAll('details.item'); };
+      btn.addEventListener('click', function () {
+        var open = btn.textContent === 'Tout déplier';
+        all().forEach(function (d) { d.open = open; });
+        btn.textContent = open ? 'Tout replier' : 'Tout déplier';
+      });
+      addEventListener('beforeprint', function () { all().forEach(function (d) { d.open = true; }); });
+    })();
+  </script>
+</body>
+
+</html>
